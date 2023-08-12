@@ -1,22 +1,22 @@
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct Stats {
-  dexterity: usize,
-  strength: usize, 
-  intelligence: usize,
-  constitution: usize,
-  charisma: usize,
-  wisdom: usize
+  pub dexterity: usize, 
+  pub strength: usize, 
+  pub intelligence: usize,
+  pub constitution: usize,
+  pub charisma: usize,
+  pub wisdom: usize
 }
 
 impl Stats {
-  pub fn new() -> Self {
+  pub fn new(data: Stats) -> Self {
     Stats { 
-      charisma: 1, 
-      constitution: 1, 
-      dexterity: 1, 
-      intelligence: 1, 
-      strength: 1, 
-      wisdom: 1,
+      charisma: 1 + data.charisma, 
+      constitution: 1 + data.constitution,  
+      dexterity: 1 + data.dexterity, 
+      intelligence: 1 + data.intelligence, 
+      strength: 1 + data.strength, 
+      wisdom: 1 + data.wisdom,
     }
   }
 }

@@ -1,9 +1,9 @@
-use crate::game_core::character::{CharacterType, Character};
+use crate::game_core::character::{CharacterTrait, Character};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Wizard {}
 
-impl CharacterType for Wizard {
+impl CharacterTrait for Wizard {
   
 }
 

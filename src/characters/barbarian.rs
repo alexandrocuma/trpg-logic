@@ -1,9 +1,9 @@
-use crate::game_core::character::{CharacterType, Character};
+use crate::game_core::character::{CharacterTrait, Character};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Barbarian {}
 
-impl CharacterType for Barbarian {
+impl CharacterTrait for Barbarian {
   
 }
 
