@@ -1,4 +1,7 @@
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Default)]
+use super::character_classes::CharacterClasses;
+
+#[derive(Debug, Default)]
+
 pub struct Stats {
   pub dexterity: usize, 
   pub strength: usize, 
@@ -9,15 +12,16 @@ pub struct Stats {
 }
 
 impl Stats {
-  pub fn new(data: Stats) -> Self {
-    Stats { 
-      charisma: 1 + data.charisma, 
-      constitution: 1 + data.constitution,  
-      dexterity: 1 + data.dexterity, 
-      intelligence: 1 + data.intelligence, 
-      strength: 1 + data.strength, 
-      wisdom: 1 + data.wisdom,
+  pub fn new(class: CharacterClasses) -> Stats {
+    match class {
+      CharacterClasses::Barbarian => Stats {
+        dexterity: 4, 
+        ..Default::default()
+      },
+      CharacterClasses::Wizard => Stats {
+        dexterity: 2, 
+        ..Default::default()
+      }
     }
   }
 }
-

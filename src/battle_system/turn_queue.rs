@@ -1,24 +1,14 @@
-use crate::game_core::character_class::CharacterClass;
+use crate::game_core::character::Character;
 
 #[derive(Debug)]
 pub struct TurnQueue {
-  pub characters_in_battle: Vec<CharacterClass>
+  
 }
 
 impl TurnQueue {
-  pub fn new(mut characters_in_battle: Vec<CharacterClass>) -> Self {
-    characters_in_battle.sort_by(|a, b| b.cmp(a));
-    TurnQueue {
-      characters_in_battle
-    }
+  pub fn set(mut battle_queue: Vec<Character>) -> Vec<Character> {
+    battle_queue.sort_by(|a, b| b.stats.dexterity.cmp(&a.stats.dexterity));
+
+    battle_queue
   }
-
-
-  // fn sort_queue(&self);
-
-  // fn tied_characters(&self);
-
-  // fn dequeue(&self);
-
-  // fn enqueue(&self);
 }
