@@ -1,24 +1,30 @@
 use rand::Rng;
-use std::cmp::Ordering;
+use std::{cmp::Ordering, collections::VecDeque};
 
 use crate::game_core::character::Character;
 
 #[derive(Debug)]
 pub struct BattleQueue {
-  
+  battle_queue: VecDeque<Character>
 }
 
 impl BattleQueue {
-  pub fn set(mut battle_queue: Vec<Character>) -> Vec<Character> {
-    battle_queue.sort_by(|a, b| {
+  pub fn set(mut characters: Vec<Character>) -> Self {
+    let mut battle_queue = VecDeque::new();
+    characters.sort_by(|a, b| {
       if b.stats.dexterity == a.stats.dexterity {
         Self::untie_roll()
       } else {
         b.stats.dexterity.cmp(&a.stats.dexterity)
       }
     });
+    battle_queue.extend(characters);
 
-    battle_queue
+    BattleQueue { battle_queue }
+  }
+
+  pub fn next_in_queue(&mut self) -> Option<Character> {
+    self.battle_queue.pop_front()
   }
 
   fn untie_roll() -> Ordering {

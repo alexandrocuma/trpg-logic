@@ -2,7 +2,9 @@ mod game_core;
 mod battle_system;
 
 use game_core::character::Character;
+use game_core::spell_level::SpellLevel;
 use game_core::character_classes::CharacterClasses;
+
 
 use battle_system::battle_queue::BattleQueue;
 
@@ -12,16 +14,22 @@ fn main() {
   let wizard = Character::new(CharacterClasses::Wizard);
 
   let characters = vec![
-    barbarian2,
-    barbarian, 
+    // barbarian2,
+    // barbarian, 
     wizard
   ];
 
-  let battle_queue = BattleQueue::set(characters);
+  let mut battle_queue = BattleQueue::set(characters);
 
-  println!("{:?}", battle_queue);
-
-  for next_battler in battle_queue {
-    println!("{:?}", next_battler);
+  match battle_queue.next_in_queue() {
+    Some(mut character) => {
+      character.cast_spell(SpellLevel::One);
+      character.cast_spell(SpellLevel::Five);
+      character.cast_spell(SpellLevel::One);
+      character.attack();
+      character.attack();
+      character.end_turn();
+    },
+    None => println!("No value"),
   }
 }

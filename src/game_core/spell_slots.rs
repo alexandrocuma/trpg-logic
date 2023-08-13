@@ -15,12 +15,23 @@ impl SpellSlots {
   pub fn new(class: &CharacterClasses) -> SpellSlots {
     match class {
       CharacterClasses::Barbarian => SpellSlots {
-        level_one: 1, 
         ..Default::default()
       },
       CharacterClasses::Wizard => SpellSlots {
+        level_one: 1,
         ..Default::default()
       }
+    }
+  }
+
+  pub fn use_level_one(&mut self, use_action: ()) {
+    match self.level_one > 0 {
+      true => { 
+        self.level_one -= 1;
+        println!("Spell Level 1 used");
+        use_action
+      },
+      false => println!("You dont have level one slots left")
     }
   }
 }
