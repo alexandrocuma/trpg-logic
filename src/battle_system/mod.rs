@@ -1,1 +1,1 @@
-pub mod turn_queue;
+pub mod battle_queue;

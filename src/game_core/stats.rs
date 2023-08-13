@@ -12,7 +12,7 @@ pub struct Stats {
 }
 
 impl Stats {
-  pub fn new(class: CharacterClasses) -> Stats {
+  pub fn new(class: &CharacterClasses) -> Stats {
     match class {
       CharacterClasses::Barbarian => Stats {
         dexterity: 4, 
